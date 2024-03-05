@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody rb;
+    public static Player instance;
 
     public float speed;
     public float maxSpeed;
@@ -13,12 +14,17 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        Move();
+        if (GameManager.instance.isStarted)
+        {
+            Move();
+        }
     }
     public void Move()
     {
@@ -34,6 +40,23 @@ public class Player : MonoBehaviour
             (transform.rotation.eulerAngles.z > 30 && transform.rotation.eulerAngles.z < 330))
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, Time.deltaTime * 10);
+        }
+    }
+
+    public IEnumerator SpeedBuff(float speed, float time)
+    {
+        maxSpeed += speed;
+        yield return new WaitForSeconds(time);
+        maxSpeed -= speed;
+
+        yield break;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
+        {
+            GameManager.instance.PlayerFinish();
         }
     }
 }
