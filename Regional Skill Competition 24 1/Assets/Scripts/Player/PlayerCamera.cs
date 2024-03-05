@@ -9,7 +9,7 @@ public class PlayerCamera : MonoBehaviour
     public Transform positionTarget;
     public float followSpeed;
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.LookAt(lookTarget.position);
         transform.position = Vector3.Lerp(transform.position, positionTarget.position, followSpeed * Time.deltaTime);
