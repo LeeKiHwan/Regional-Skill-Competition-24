@@ -36,8 +36,10 @@ public class Player : MonoBehaviour
 
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
+        rb.angularVelocity = Vector3.zero;
+
         if ((transform.rotation.eulerAngles.x > 30 && transform.rotation.eulerAngles.x < 330) ||
-            (transform.rotation.eulerAngles.z > 30 && transform.rotation.eulerAngles.z < 330))
+            (transform.rotation.eulerAngles.z > 30 && transform.rotation.eulerAngles.z < 330))                                              
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.identity, Time.deltaTime * 10);
         }

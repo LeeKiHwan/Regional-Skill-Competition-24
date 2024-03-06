@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
 {
-    public enum CarType
-    {
-        Player,
-        Enemy
-    }
-
     public enum CollisionType
     {
         Foward,
@@ -17,13 +11,11 @@ public class CollisionChecker : MonoBehaviour
         Back
     }
 
-    public CarType carType;
     public CollisionType collisionType;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (carType == CarType.Player && other.GetComponent<CollisionChecker>() && 
-            other.GetComponent<CollisionChecker>().carType == CarType.Enemy)
+        if (other.CompareTag("Enemy"))
         {
             Player player = GetComponentInParent<Player>();
 
