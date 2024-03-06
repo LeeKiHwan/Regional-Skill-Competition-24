@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Net.Sockets;
+using Unity.VisualScripting;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -26,6 +30,8 @@ public class Player : MonoBehaviour
         {
             Move();
         }
+
+        Debug.Log(rb.velocity.y);
     }
     public void Move()
     {
@@ -67,11 +73,17 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Slow"))
         {
-            slowSpeed = 10;
+            slowSpeed = 15;
         }
         else
         {
             slowSpeed = 0;
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Vector3 dir = (transform.position - collision.transform.position).normalized;
+            rb.AddForce(dir * 2.5f, ForceMode.Impulse);
         }
     }
 }

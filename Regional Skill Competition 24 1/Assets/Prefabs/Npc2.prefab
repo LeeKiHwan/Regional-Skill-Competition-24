@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 5
-  maxSpeed: 25
+  speed: 20
+  maxSpeed: 40
   destroyTime: 5
 --- !u!54 &-5167215836180945186
 Rigidbody:
