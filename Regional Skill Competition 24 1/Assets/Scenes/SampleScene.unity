@@ -2560,7 +2560,7 @@ Transform:
   m_GameObject: {fileID: 939647154}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -329.31012, y: -118.88798, z: -463.7685}
+  m_LocalPosition: {x: -329.31012, y: -118.78898, z: -463.7685}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5679,6 +5679,56 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 430013225}
   m_SourcePrefab: {fileID: 100100000, guid: 802bd3dc24c20394ca2037c1b9c882a0, type: 3}
+--- !u!1 &1801825392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1801825393}
+  - component: {fileID: 1801825394}
+  m_Layer: 0
+  m_Name: NPC Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1801825393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801825392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -66.2, y: 0, z: 343.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1801825394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801825392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2875f8fa20bc58349913c4ef6e158b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCs:
+  - {fileID: 7030682280812893691, guid: 8acb7fa313661664593cd44fedf0e533, type: 3}
+  - {fileID: 7444843855094209159, guid: 37062b8987d364c4f99af6f5761ae26e, type: 3}
+  spawnCool: 1
+  spawnX: 0
+  spawnZ: 40
 --- !u!1 &1821161634
 GameObject:
   m_ObjectHideFlags: 0
@@ -6796,14 +6846,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 939647157}
-  - {fileID: 670823207}
   - {fileID: 1590775482}
   - {fileID: 663479974}
   - {fileID: 9160577}
   - {fileID: 416314317}
   - {fileID: 1898216348}
   - {fileID: 194087709}
+  - {fileID: 939647157}
+  - {fileID: 670823207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1656881796431153
@@ -7119,3 +7169,4 @@ SceneRoots:
   - {fileID: 1987970019}
   - {fileID: 913836524}
   - {fileID: 2136017255}
+  - {fileID: 1801825393}
