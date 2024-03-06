@@ -2290,6 +2290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   target: {fileID: 9160577}
+  speed: 20
+  slowSpeed: 0
 --- !u!1 &925382694
 GameObject:
   m_ObjectHideFlags: 0
