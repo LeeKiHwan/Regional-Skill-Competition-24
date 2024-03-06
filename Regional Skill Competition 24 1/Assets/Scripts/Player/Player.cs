@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     public float speed;
     public float maxSpeed;
+    public float slowSpeed;
     public float rotSpeed;
 
     private void Awake()
@@ -34,7 +35,7 @@ public class Player : MonoBehaviour
         rb.AddForce(transform.forward * z, ForceMode.Acceleration);
         transform.Rotate(transform.up, yRot);
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed - slowSpeed);
 
         rb.angularVelocity = Vector3.zero;
 
@@ -59,6 +60,18 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             GameManager.instance.PlayerFinish();
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Slow"))
+        {
+            slowSpeed = 10;
+        }
+        else
+        {
+            slowSpeed = 0;
         }
     }
 }

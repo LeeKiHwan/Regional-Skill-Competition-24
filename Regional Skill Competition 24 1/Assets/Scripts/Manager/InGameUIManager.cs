@@ -66,8 +66,8 @@ public class InGameUIManager : MonoBehaviour
 
             getScoreText.text =
                 "\n스테이지 클리어 +" + GameManager.instance.curStage * 10000 +
-                "\n타임 보너스 +" + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 1000)) +
-                "총 점수 : " + GameManager.score;
+                "\n타임 보너스 +" + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 100)) +
+                "\n총 점수 : " + GameManager.score;
 
             yield return new WaitForSeconds(3);
 

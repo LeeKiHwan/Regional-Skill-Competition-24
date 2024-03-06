@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     public Transform target;
 
+    public float speed;
+    public float slowSpeed;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -18,6 +21,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         agent.isStopped = !GameManager.instance.isStarted;
+        agent.speed = speed - slowSpeed;
     }
 
     public IEnumerator SpeedBuff(float speed, float time)
@@ -34,6 +38,18 @@ public class Enemy : MonoBehaviour
         if (other.CompareTag("Finish"))
         {
             GameManager.instance.isEnemyFinished = true;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Slow"))
+        {
+            slowSpeed = 10;
+        }
+        else
+        {
+            slowSpeed = 0;
         }
     }
 }
