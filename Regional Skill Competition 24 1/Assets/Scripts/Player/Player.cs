@@ -108,15 +108,15 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Slow"))
         {
-            if (GameManager.instance.curStage == 1 && !stage1Tire)
+            if (GameManager.curStage == 1 && !stage1Tire)
             {
                 slowSpeed = 15;
             }
-            if (GameManager.instance.curStage == 2 && !stage2Tire)
+            if (GameManager.curStage == 2 && !stage2Tire)
             {
                 slowSpeed = 15;
             }
-            if (GameManager.instance.curStage == 3 && !stage3Tire)
+            if (GameManager.curStage == 3 && !stage3Tire)
             {
                 slowSpeed = 15;
             }

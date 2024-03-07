@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public bool isStarted;
-    public int curStage;
+    public static int curStage;
 
     public float time;
     public static int score;

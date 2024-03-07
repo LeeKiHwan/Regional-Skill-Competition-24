@@ -72,7 +72,7 @@ public class InGameUIManager : MonoBehaviour
             getGoldText.text = "획득 상금 : " + GameManager.instance.getGold + "원";
 
             getScoreText.text =
-                "\n스테이지 클리어 +" + GameManager.instance.curStage * 10000 +
+                "\n스테이지 클리어 +" + GameManager.curStage * 10000 +
                 "\n타임 보너스 +" + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 100)) +
                 "\n총 점수 : " + GameManager.score;
 
@@ -82,6 +82,8 @@ public class InGameUIManager : MonoBehaviour
         }
         else if (ranking == 2)
         {
+            getGoldText.text = "잠시 후 스테이지를 재시작합니다...";
+
             yield return new WaitForSeconds(3);
 
             GameManager.instance.RestartStage();

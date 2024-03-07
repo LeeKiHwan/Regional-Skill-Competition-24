@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Store : MonoBehaviour
@@ -9,24 +10,36 @@ public class Store : MonoBehaviour
     public Text CurGold;
 
     public int stage1TirePrice;
+    public GameObject stage1TireSoldOut;
 
     [Space()]
     public int stage2TirePrice;
-    
+    public GameObject stage2TireSoldOut;
+
     [Space()]
     public int stage3TirePrice;
+    public GameObject stage3TireSoldOut;
 
     [Space()]
     public int sixEnginePrice;
     public float sixEngineSpeed;
+    public GameObject sixEngineSoldOut;
 
     [Space()]
     public int eightEnginePrice;
     public float eightEngineSpeed;
+    public GameObject eightEngineSoldOut;
 
     private void Update()
     {
-        CurGold.text = "현재 자금 : " + GameManager.gold + "원";
+        CurGold.text = GameManager.gold + " 원";
+
+        stage1TireSoldOut.SetActive(Player.stage1Tire);
+        stage2TireSoldOut.SetActive(Player.stage2Tire);
+        stage3TireSoldOut.SetActive(Player.stage3Tire);
+
+        sixEngineSoldOut.SetActive(Player.addSpeed >= sixEngineSpeed);
+        eightEngineSoldOut.SetActive(Player.addSpeed >= eightEngineSpeed);
     }
 
     public void BuyTire(int stage)
@@ -74,6 +87,19 @@ public class Store : MonoBehaviour
                     Player.addSpeed = eightEngineSpeed;
                     GameManager.gold -= eightEnginePrice;
                 }
+                break;
+        }
+    }
+
+    public void NextStage()
+    {
+        switch (GameManager.curStage)
+        {
+            case 1:
+                SceneManager.LoadScene("Stage2");
+                break;
+            case 2:
+                SceneManager.LoadScene("Stage3");
                 break;
         }
     }
