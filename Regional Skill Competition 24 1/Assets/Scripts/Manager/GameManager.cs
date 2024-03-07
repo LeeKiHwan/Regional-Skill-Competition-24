@@ -55,29 +55,14 @@ public class GameManager : MonoBehaviour
         isStarted = false;
     }
 
-    public void NextStage()
+    public void GoStore()
     {
-        switch (curStage)
-        {
-            case 1:
-                SceneManager.LoadScene("Stage2");
-                break;
-            case 2:
-                SceneManager.LoadScene("Stage3");
-                break;
-            case 3:
-                SceneManager.LoadScene("Menu");
-                break;
-        }
+        SceneManager.LoadScene("Store");
     }
 
     public void CheatKey()
     {
         if (Input.GetKeyDown(KeyCode.F1))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.F2))
         {
 
         }
@@ -87,7 +72,18 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F4))
         {
-            NextStage();
+            switch (curStage)
+            {
+                case 1:
+                    SceneManager.LoadScene("Stage2");
+                    break;
+                case 2:
+                    SceneManager.LoadScene("Stage3");
+                    break;
+                case 3:
+                    SceneManager.LoadScene("Stage1");
+                    break;
+            }
         }
         if (Input.GetKeyDown(KeyCode.F5))
         {

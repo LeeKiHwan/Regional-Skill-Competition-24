@@ -6,11 +6,18 @@ public class InGameUIManager : MonoBehaviour
 {
     public static InGameUIManager instance;
 
+    [Space()]
     public Text countDownText;
 
+    [Space()]
     public GameObject inGameUILayer;
     public Text timeText;
 
+    [Space()]
+    public GameObject[] itemImages;
+    public Text itemName;
+
+    [Space()]
     public GameObject finishLayer;
     public Text rankingText;
     public Text getGoldText;
@@ -71,7 +78,7 @@ public class InGameUIManager : MonoBehaviour
 
             yield return new WaitForSeconds(3);
 
-            GameManager.instance.NextStage();
+            GameManager.instance.GoStore();
         }
         else if (ranking == 2)
         {
@@ -79,6 +86,37 @@ public class InGameUIManager : MonoBehaviour
 
             GameManager.instance.RestartStage();
         }
+
+        yield break;
+    }
+
+    public IEnumerator ShowItem(int item)
+    {
+        itemImages[item].SetActive(true);
+
+        switch (item)
+        {
+            case 0:
+                itemName.text = "100만원";
+                break;
+            case 1:
+                itemName.text = "500만원";
+                break;
+            case 2:
+                itemName.text = "1000만원";
+                break;
+            case 3:
+                itemName.text = "소폭 부스트";
+                break;
+            case 4:
+                itemName.text = "대폭 부스트";
+                break;
+        }
+
+        yield return new WaitForSeconds(1.5f);
+
+        itemImages[item].SetActive(false);
+        itemName.text = "";
 
         yield break;
     }

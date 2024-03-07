@@ -26,8 +26,6 @@ public class Player : MonoBehaviour
     {
         instance = this;
 
-        stage1Tire = true;
-
         rb = GetComponent<Rigidbody>();
     }
 
@@ -66,9 +64,9 @@ public class Player : MonoBehaviour
         yield break;
     }
 
-    public void GetItem()
+    public void GetItem(int? index = null)
     {
-        int rand = Random.Range(0, 5);
+        int rand = index.HasValue ? index.Value : Random.Range(0, 5);
 
         switch (rand)
         {
@@ -88,6 +86,8 @@ public class Player : MonoBehaviour
                 StartCoroutine(SpeedBuff(20, 3));
                 break;
         }
+
+        StartCoroutine(InGameUIManager.instance.ShowItem(rand));
     }
 
     private void OnTriggerEnter(Collider other)
