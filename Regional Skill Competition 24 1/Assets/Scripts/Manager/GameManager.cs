@@ -29,11 +29,8 @@ public class GameManager : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-    }
 
-    public void GetGold(int getGold)
-    {
-        gold += getGold;
+        CheatKey();
     }
 
     public void RestartStage()
@@ -71,6 +68,37 @@ public class GameManager : MonoBehaviour
             case 3:
                 SceneManager.LoadScene("Menu");
                 break;
+        }
+    }
+
+    public void CheatKey()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            RestartStage();
+        }
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            NextStage();
+        }
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            if (Time.timeScale > 0)
+            {
+                Time.timeScale = 0;
+            }
+            else if (Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+            }
         }
     }
 }

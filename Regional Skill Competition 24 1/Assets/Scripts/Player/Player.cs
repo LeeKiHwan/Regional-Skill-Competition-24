@@ -15,11 +15,18 @@ public class Player : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public float slowSpeed;
+    public static float addSpeed;
     public float rotSpeed;
+
+    public static bool stage1Tire;
+    public static bool stage2Tire;
+    public static bool stage3Tire;
 
     private void Awake()
     {
         instance = this;
+
+        stage1Tire = true;
 
         rb = GetComponent<Rigidbody>();
     }
@@ -30,8 +37,6 @@ public class Player : MonoBehaviour
         {
             Move();
         }
-
-        Debug.Log(rb.velocity.y);
     }
     public void Move()
     {
@@ -41,7 +46,7 @@ public class Player : MonoBehaviour
         rb.AddForce(transform.forward * z, ForceMode.Acceleration);
         transform.Rotate(transform.up, yRot);
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed - slowSpeed);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed - slowSpeed + addSpeed);
 
         rb.angularVelocity = Vector3.zero;
 
@@ -61,11 +66,41 @@ public class Player : MonoBehaviour
         yield break;
     }
 
+    public void GetItem()
+    {
+        int rand = Random.Range(0, 5);
+
+        switch (rand)
+        {
+            case 0:
+                GameManager.gold += 1000000;
+                break;
+            case 1:
+                GameManager.gold += 5000000;
+                break;
+            case 2:
+                GameManager.gold += 10000000;
+                break;
+            case 3:
+                StartCoroutine(SpeedBuff(10, 3));
+                break;
+            case 4:
+                StartCoroutine(SpeedBuff(20, 3));
+                break;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Finish"))
         {
             GameManager.instance.PlayerFinish();
+        }
+
+        if (other.CompareTag("Item"))
+        {
+            GetItem();
+            Destroy(other.gameObject);
         }
     }
 
@@ -73,7 +108,18 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Slow"))
         {
-            slowSpeed = 15;
+            if (GameManager.instance.curStage == 1 && !stage1Tire)
+            {
+                slowSpeed = 15;
+            }
+            if (GameManager.instance.curStage == 2 && !stage2Tire)
+            {
+                slowSpeed = 15;
+            }
+            if (GameManager.instance.curStage == 3 && !stage3Tire)
+            {
+                slowSpeed = 15;
+            }
         }
         else
         {
