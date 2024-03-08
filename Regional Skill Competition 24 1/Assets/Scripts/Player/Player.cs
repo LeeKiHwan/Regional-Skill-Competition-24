@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Vector3 dir = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(dir * 2.5f, ForceMode.Impulse);
+            rb.AddForce(dir * 3f, ForceMode.VelocityChange);
         }
     }
 }

@@ -14,6 +14,7 @@ public class InGameUIManager : MonoBehaviour
     [Space()]
     public GameObject inGameUILayer;
     public TextMeshProUGUI timeText;
+    public TextMeshProUGUI playerVelocityText;
 
     [Space()]
     public GameObject[] itemImages;
@@ -59,6 +60,8 @@ public class InGameUIManager : MonoBehaviour
     public void UpdateUI()
     {
         timeText.text = (int)(GameManager.instance.time / 60) + " : " + (int)(GameManager.instance.time % 60);
+
+        playerVelocityText.text = ((int)(Player.instance.rb.velocity.magnitude * 3600f / 1000f)).ToString();
     }
 
     public IEnumerator PlayerFinish(int ranking)
@@ -74,12 +77,12 @@ public class InGameUIManager : MonoBehaviour
         {
             getGoldText.text = "획득 상금\n" + GameManager.instance.getGold + "원";
 
+            GameManager.score += (GameManager.curStage * 10000) + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 100));
+
             getScoreText.text =
                 "스테이지 클리어    +" + GameManager.curStage * 10000 +
                 "\n타임 보너스    +" + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 100)) +
-            "\n총 점수 : " + GameManager.score;
-
-            GameManager.score += (GameManager.curStage * 10000) + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 1000));
+                "\n총 점수 : " + GameManager.score;
 
             yield return new WaitForSeconds(3);
 
