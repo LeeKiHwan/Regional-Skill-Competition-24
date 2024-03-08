@@ -17,10 +17,13 @@ public class GameManager : MonoBehaviour
     public int getGold;
 
     public bool isEnemyFinished = false;
+    public Transform endCameraPos;
 
     private void Awake()
     {
         instance = this;
+
+        curStage = 1;
     }
 
     private void Update()
@@ -43,7 +46,6 @@ public class GameManager : MonoBehaviour
         if (!isEnemyFinished)
         {
             gold += getGold;
-            score += (curStage * 10000) + Mathf.Max(0, 10000 - (int)(time * 1000));
 
             StartCoroutine(InGameUIManager.instance.PlayerFinish(1));
         }
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(InGameUIManager.instance.PlayerFinish(2));
         }
 
-        isStarted = false;
+        Camera.main.GetComponent<PlayerCamera>().positionTarget = endCameraPos;
     }
 
     public void GoStore()

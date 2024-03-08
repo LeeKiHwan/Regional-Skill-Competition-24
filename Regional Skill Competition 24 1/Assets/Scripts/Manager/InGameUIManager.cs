@@ -1,5 +1,7 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class InGameUIManager : MonoBehaviour
@@ -7,21 +9,21 @@ public class InGameUIManager : MonoBehaviour
     public static InGameUIManager instance;
 
     [Space()]
-    public Text countDownText;
+    public TextMeshProUGUI countDownText;
 
     [Space()]
     public GameObject inGameUILayer;
-    public Text timeText;
+    public TextMeshProUGUI timeText;
 
     [Space()]
     public GameObject[] itemImages;
-    public Text itemName;
+    public TextMeshProUGUI itemName;
 
     [Space()]
     public GameObject finishLayer;
-    public Text rankingText;
-    public Text getGoldText;
-    public Text getScoreText;
+    public TextMeshProUGUI rankingText;
+    public TextMeshProUGUI getGoldText;
+    public TextMeshProUGUI getScoreText;
 
     private void Awake()
     {
@@ -41,11 +43,10 @@ public class InGameUIManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         countDownText.text = "1";
         yield return new WaitForSeconds(1);
-        countDownText.text = "출발!";
+        countDownText.text = "GO!";
+        GameManager.instance.isStarted = true;
         yield return new WaitForSeconds(0.5f);
         countDownText.text = "";
-
-        GameManager.instance.isStarted = true;
 
         yield break;
     }
@@ -62,19 +63,23 @@ public class InGameUIManager : MonoBehaviour
 
     public IEnumerator PlayerFinish(int ranking)
     {
+        yield return new WaitForSeconds(1.5f);
+
         inGameUILayer.SetActive(false);
         finishLayer.SetActive(true);
 
-        rankingText.text = "순위 : " + ranking;
+        rankingText.text = ranking + "위";
 
         if (ranking == 1)
         {
-            getGoldText.text = "획득 상금 : " + GameManager.instance.getGold + "원";
+            getGoldText.text = "획득 상금\n" + GameManager.instance.getGold + "원";
 
             getScoreText.text =
-                "\n스테이지 클리어 +" + GameManager.curStage * 10000 +
-                "\n타임 보너스 +" + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 100)) +
-                "\n총 점수 : " + GameManager.score;
+                "스테이지 클리어    +" + GameManager.curStage * 10000 +
+                "\n타임 보너스    +" + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 100)) +
+            "\n총 점수 : " + GameManager.score;
+
+            GameManager.score += (GameManager.curStage * 10000) + Mathf.Max(0, 10000 - (int)(GameManager.instance.time * 1000));
 
             yield return new WaitForSeconds(3);
 

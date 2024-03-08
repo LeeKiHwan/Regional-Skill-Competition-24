@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Slow"))
         {
-            slowSpeed = 15;
+            slowSpeed = 10;
         }
         else
         {

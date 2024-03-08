@@ -44,7 +44,9 @@ public class Player : MonoBehaviour
         rb.AddForce(transform.forward * z, ForceMode.Acceleration);
         transform.Rotate(transform.up, yRot);
 
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed - slowSpeed + addSpeed);
+        float limitSpeed = maxSpeed + addSpeed - slowSpeed;
+        Vector3 vel = Vector3.ClampMagnitude(rb.velocity, limitSpeed);
+        rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(vel.x, rb.velocity.y, vel.z), Time.deltaTime * 5);
 
         rb.angularVelocity = Vector3.zero;
 

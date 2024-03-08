@@ -22,13 +22,13 @@ public class CollisionChecker : MonoBehaviour
             switch (collisionType)
             {
                 case CollisionType.Foward:
-                    StartCoroutine(player.SpeedBuff(-5, 1));
+                    StartCoroutine(player.SpeedBuff(-5, 1.5f));
                     break;
                 case CollisionType.Side:
-                    StartCoroutine(player.SpeedBuff(-2.5f, 1));
+                    StartCoroutine(player.SpeedBuff(-2.5f, 1.5f));
                     break;
                 case CollisionType.Back:
-                    StartCoroutine(player.SpeedBuff(5, 1));
+                    StartCoroutine(player.SpeedBuff(5, 2));
                     break;
             }
         }

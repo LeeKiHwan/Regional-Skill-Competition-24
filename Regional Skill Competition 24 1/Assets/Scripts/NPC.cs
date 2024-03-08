@@ -8,6 +8,7 @@ public class NPC : MonoBehaviour
     public float speed;
     public float maxSpeed;
     public float destroyTime;
+    public bool isCollision;
 
     private void Start()
     {
@@ -18,24 +19,23 @@ public class NPC : MonoBehaviour
 
     private void Update()
     {
-        rb.AddForce(transform.forward * speed, ForceMode.Acceleration);
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        if (!isCollision)
+        {
+            rb.AddForce(transform.forward * speed, ForceMode.Acceleration);
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !isCollision)
         {
-            StartCoroutine(Collision());
+            Vector3 dir = (transform.position - collision.transform.position).normalized;
+            rb.AddForce(dir * 8f, ForceMode.Impulse);
+
+            GetComponent<Collider>().isTrigger = false;
+
+            isCollision = true;
         }
-    }
-
-    public IEnumerator Collision()
-    {
-        yield return new WaitForSeconds(0.15f);
-
-        GetComponent<Collider>().isTrigger = false;
-
-        yield break;
     }
 }
