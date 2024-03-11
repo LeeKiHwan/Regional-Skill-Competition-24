@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -103,5 +104,12 @@ public class Store : MonoBehaviour
                 SceneManager.LoadScene("Stage3");
                 break;
         }
+    }
+
+    public void CountiueGame()
+    {
+        Time.timeScale = 1;
+        InGameUIManager.instance.inGameUILayer.SetActive(true);
+        InGameUIManager.instance.storeUILayer.SetActive(false);
     }
 }

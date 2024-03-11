@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 
     public void GetItem(int? index = null)
     {
-        int rand = index.HasValue ? index.Value : Random.Range(0, 5);
+        int rand = index.HasValue ? index.Value : Random.Range(0, 6);
 
         switch (rand)
         {

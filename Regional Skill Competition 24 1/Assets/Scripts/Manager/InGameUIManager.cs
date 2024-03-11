@@ -20,6 +20,7 @@ public class InGameUIManager : MonoBehaviour
 
     [Space()]
     public GameObject[] itemImages;
+    public GameObject storeUILayer;
 
     [Space()]
     public GameObject finishLayer;
@@ -142,6 +143,13 @@ public class InGameUIManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         itemImages[item].SetActive(false);
+
+        if (item == 5)
+        {
+            Time.timeScale = 0;
+            inGameUILayer.SetActive(false);
+            storeUILayer.SetActive(true);
+        }
 
         yield break;
     }
