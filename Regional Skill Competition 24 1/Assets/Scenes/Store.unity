@@ -6324,7 +6324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46b28f0d1ee3c44b8953c0f527815f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurGold: {fileID: 0}
+  CurGold: {fileID: 93268246}
   stage1TirePrice: 5000000
   stage1TireSoldOut: {fileID: 1250057277}
   stage2TirePrice: 10000000

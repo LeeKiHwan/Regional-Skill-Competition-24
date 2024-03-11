@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     public float itemGetTime;
     public GameObject itemGetEffect;
 
+    [Space()]
+    public GameObject miniBoost;
+    public GameObject megaBoost;
+
     public static bool stage1Tire;
     public static bool stage2Tire;
     public static bool stage3Tire;
@@ -38,7 +42,7 @@ public class Player : MonoBehaviour
     public void Move()
     {
         float z = Input.GetAxis("Vertical") * speed * Time.deltaTime * 350;
-        float yRot = Input.GetAxis("Horizontal") * rotSpeed * Input.GetAxis("Vertical");
+        float yRot = Input.GetAxis("Horizontal") * rotSpeed * Input.GetAxis("Vertical") * Time.deltaTime;
 
         rb.AddForce(transform.forward * z, ForceMode.Acceleration);
         transform.Rotate(transform.up, yRot);
@@ -83,13 +87,33 @@ public class Player : MonoBehaviour
                 break;
             case 3:
                 StartCoroutine(SpeedBuff(10, 3));
+                StartCoroutine(BoostEffect(0));
                 break;
             case 4:
                 StartCoroutine(SpeedBuff(20, 3));
+                StartCoroutine(BoostEffect(1));
                 break;
         }
 
         StartCoroutine(InGameUIManager.instance.ShowItem(rand));
+    }
+
+    public IEnumerator BoostEffect(int boost)
+    {
+        if (boost == 0)
+        {
+            miniBoost.SetActive(true);
+            yield return new WaitForSeconds(3);
+            miniBoost.SetActive(false);
+        }
+        else if (boost == 1)
+        {
+            megaBoost.SetActive(true);
+            yield return new WaitForSeconds(3);
+            megaBoost.SetActive(false);
+        }
+
+        yield break;
     }
 
     private void OnTriggerEnter(Collider other)
