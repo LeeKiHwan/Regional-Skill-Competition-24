@@ -37,7 +37,8 @@ public class CollisionChecker : MonoBehaviour
                     break;
             }
 
-            Instantiate(collisionEffect, transform.position, Quaternion.identity);
+            GameObject g = Instantiate(collisionEffect, transform.position, Quaternion.identity);
+            Destroy(g, g.GetComponentInChildren<ParticleSystem>().main.duration);
         }
     }
 }

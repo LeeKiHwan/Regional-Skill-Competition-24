@@ -3,15 +3,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Space()]
     public Rigidbody rb;
     public static Player instance;
 
+    [Space()]
     public float speed;
     public float maxSpeed;
     public float slowSpeed;
     public static float addSpeed;
     public float rotSpeed;
     public GameObject driftEffect;
+    public float itemGetTime;
+    public GameObject itemGetEffect;
 
     public static bool stage1Tire;
     public static bool stage2Tire;
@@ -33,7 +37,7 @@ public class Player : MonoBehaviour
     }
     public void Move()
     {
-        float z = Input.GetAxis("Vertical") * speed;
+        float z = Input.GetAxis("Vertical") * speed * Time.deltaTime * 350;
         float yRot = Input.GetAxis("Horizontal") * rotSpeed * Input.GetAxis("Vertical");
 
         rb.AddForce(transform.forward * z, ForceMode.Acceleration);
@@ -42,7 +46,7 @@ public class Player : MonoBehaviour
         driftEffect.SetActive(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.975f && rb.velocity.y > -1f);
 
         Vector3 vel = Vector3.ClampMagnitude(rb.velocity, maxSpeed + addSpeed - slowSpeed);
-        rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(vel.x, rb.velocity.y, vel.z), Time.deltaTime * 5);
+        rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(vel.x, rb.velocity.y, vel.z), Time.deltaTime * 10);
 
         rb.angularVelocity = Vector3.zero;
 
@@ -95,10 +99,14 @@ public class Player : MonoBehaviour
             GameManager.instance.PlayerFinish();
         }
 
-        if (other.CompareTag("Item"))
+        if (other.CompareTag("Item") && itemGetTime < Time.time)
         {
+            GameObject g = Instantiate(itemGetEffect, other.transform.position, Quaternion.identity);
+            Destroy(g, g.GetComponent<ParticleSystem>().main.duration);
             GetItem();
             Destroy(other.gameObject);
+
+            itemGetTime = Time.time + 2;
         }
     }
 

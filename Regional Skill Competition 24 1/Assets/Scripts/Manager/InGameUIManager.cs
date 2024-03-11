@@ -20,7 +20,6 @@ public class InGameUIManager : MonoBehaviour
 
     [Space()]
     public GameObject[] itemImages;
-    public TextMeshProUGUI itemName;
 
     [Space()]
     public GameObject finishLayer;
@@ -140,29 +139,9 @@ public class InGameUIManager : MonoBehaviour
     {
         itemImages[item].SetActive(true);
 
-        switch (item)
-        {
-            case 0:
-                itemName.text = "100만원";
-                break;
-            case 1:
-                itemName.text = "500만원";
-                break;
-            case 2:
-                itemName.text = "1000만원";
-                break;
-            case 3:
-                itemName.text = "소폭 부스트";
-                break;
-            case 4:
-                itemName.text = "대폭 부스트";
-                break;
-        }
-
         yield return new WaitForSeconds(1.5f);
 
         itemImages[item].SetActive(false);
-        itemName.text = "";
 
         yield break;
     }
