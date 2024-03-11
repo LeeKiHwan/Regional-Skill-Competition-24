@@ -15,6 +15,8 @@ public class InGameUIManager : MonoBehaviour
     public GameObject inGameUILayer;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI playerVelocityText;
+    public GameObject playerCollisionPrefab;
+    public Transform playerCollsionPos;
 
     [Space()]
     public GameObject[] itemImages;
@@ -62,6 +64,40 @@ public class InGameUIManager : MonoBehaviour
         timeText.text = (int)(GameManager.instance.time / 60) + " : " + (int)(GameManager.instance.time % 60);
 
         playerVelocityText.text = ((int)(Player.instance.rb.velocity.magnitude * 3600f / 1000f)).ToString();
+    }
+
+    public IEnumerator PlayerCollsiion(int col)
+    {
+        TextMeshProUGUI t = Instantiate(playerCollisionPrefab, playerCollsionPos).GetComponentInChildren<TextMeshProUGUI>();
+
+        switch (col)
+        {
+            case 0:
+                t.text = "전면충돌!";
+                t.color = new Color(1, 0, 0.2f);
+                break;
+            case 1:
+                t.text = "측면충돌!";
+                t.color = new Color(1, 0.5f, 0);
+                break;
+            case 2:
+                t.text = "후면충돌!";
+                t.color = new Color(0, 1, 0);
+                break;
+        }
+
+        while (t.color.a > 0)
+        {
+            t.color = new Color(t.color.r, t.color.g, t.color.b, t.color.a - Time.deltaTime);
+
+            t.transform.parent.transform.Translate(Vector3.down * Time.deltaTime * 200);
+
+            yield return null;
+        }
+
+        Destroy(t.transform.parent.gameObject);
+
+        yield break;
     }
 
     public IEnumerator PlayerFinish(int ranking)

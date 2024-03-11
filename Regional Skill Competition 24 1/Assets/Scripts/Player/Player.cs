@@ -1,11 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Net.Sockets;
-using Unity.VisualScripting;
-using UnityEditor.Timeline;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
@@ -17,6 +11,7 @@ public class Player : MonoBehaviour
     public float slowSpeed;
     public static float addSpeed;
     public float rotSpeed;
+    public GameObject driftEffect;
 
     public static bool stage1Tire;
     public static bool stage2Tire;
@@ -39,13 +34,14 @@ public class Player : MonoBehaviour
     public void Move()
     {
         float z = Input.GetAxis("Vertical") * speed;
-        float yRot = Input.GetAxis("Horizontal") * rotSpeed * (rb.velocity.magnitude / 20);
+        float yRot = Input.GetAxis("Horizontal") * rotSpeed * Input.GetAxis("Vertical");
 
         rb.AddForce(transform.forward * z, ForceMode.Acceleration);
         transform.Rotate(transform.up, yRot);
 
-        float limitSpeed = maxSpeed + addSpeed - slowSpeed;
-        Vector3 vel = Vector3.ClampMagnitude(rb.velocity, limitSpeed);
+        driftEffect.SetActive(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.975f && rb.velocity.y > -1f);
+
+        Vector3 vel = Vector3.ClampMagnitude(rb.velocity, maxSpeed + addSpeed - slowSpeed);
         rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(vel.x, rb.velocity.y, vel.z), Time.deltaTime * 5);
 
         rb.angularVelocity = Vector3.zero;
@@ -130,8 +126,16 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Vector3 dir = (transform.position - collision.transform.position).normalized;
-            rb.AddForce(dir * 3f, ForceMode.VelocityChange);
+            if (collision.gameObject.GetComponent<NPC>())
+            {
+                Vector3 dir = (transform.position - collision.transform.position).normalized;
+                rb.AddForce(dir * 9f, ForceMode.VelocityChange);
+            }
+            else
+            {
+                Vector3 dir = (transform.position - collision.transform.position).normalized;
+                rb.AddForce(dir * 3f, ForceMode.VelocityChange);
+            }
         }
     }
 }
