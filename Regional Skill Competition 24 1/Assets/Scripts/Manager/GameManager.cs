@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     public static int score;
     public static int gold;
     public int getGold;
+    public int itemCheatIndex;
+    public bool itemCheatOn;
+    public GameObject[] itemCheat;
 
     public bool isEnemyFinished = false;
     public Transform endCameraPos;
@@ -34,6 +37,29 @@ public class GameManager : MonoBehaviour
         }
 
         CheatKey();
+
+        if (itemCheatOn)
+        {
+            if (Input.GetKeyDown(KeyCode.RightBracket))
+            {
+                itemCheat[itemCheatIndex].SetActive(false);
+                itemCheatIndex = Mathf.Clamp(itemCheatIndex + 1, 0, 5);
+                itemCheat[itemCheatIndex].SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            {
+                itemCheat[itemCheatIndex].SetActive(false);
+                itemCheatIndex = Mathf.Clamp(itemCheatIndex - 1, 0, 5);
+                itemCheat[itemCheatIndex].SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                Player.instance.GetItem(itemCheatIndex);
+                itemCheat[itemCheatIndex].SetActive(false);
+                itemCheatOn = false;
+            }
+        }
     }
 
     public void RestartStage()
@@ -66,7 +92,8 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-
+            itemCheatOn = !itemCheatOn;
+            itemCheat[itemCheatIndex].SetActive(itemCheatOn);
         }
         if (Input.GetKeyDown(KeyCode.F3))
         {

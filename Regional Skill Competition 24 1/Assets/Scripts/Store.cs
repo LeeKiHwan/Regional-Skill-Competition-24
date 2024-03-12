@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class Store : MonoBehaviour
 {
     public TextMeshProUGUI CurGold;
+    public bool isFree;
+    public GameObject isFreeObj;
 
     public int stage1TirePrice;
     public GameObject stage1TireSoldOut;
@@ -42,6 +44,12 @@ public class Store : MonoBehaviour
 
         sixEngineSoldOut.SetActive(Player.addSpeed >= sixEngineSpeed);
         eightEngineSoldOut.SetActive(Player.addSpeed >= eightEngineSpeed);
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            isFree = !isFree;
+            isFreeObj.SetActive(isFree);
+        }
     }
 
     public void BuyTire(int stage)
@@ -52,21 +60,21 @@ public class Store : MonoBehaviour
                 if (!Player.stage1Tire && GameManager.gold >= stage1TirePrice)
                 {
                     Player.stage1Tire = true;
-                    GameManager.gold -= stage1TirePrice;
+                    GameManager.gold -= isFree ? 0 : stage1TirePrice;
                 }
                 break;
             case 2:
                 if (!Player.stage2Tire && GameManager.gold >= stage2TirePrice)
                 {
                     Player.stage2Tire = true;
-                    GameManager.gold -= stage2TirePrice;
+                    GameManager.gold -= isFree ? 0 : stage2TirePrice;
                 }
                 break;
             case 3:
                 if (!Player.stage3Tire && GameManager.gold >= stage3TirePrice)
                 {
                     Player.stage3Tire = true;
-                    GameManager.gold -= stage3TirePrice;
+                    GameManager.gold -= isFree ? 0 : stage3TirePrice;
                 }
                 break;
         }
@@ -80,14 +88,14 @@ public class Store : MonoBehaviour
                 if (Player.addSpeed < sixEngineSpeed && GameManager.gold >= sixEnginePrice)
                 {
                     Player.addSpeed = sixEngineSpeed;
-                    GameManager.gold -= sixEnginePrice;
+                    GameManager.gold -= isFree ? 0 : sixEnginePrice;
                 }
                 break;
             case 1:
                 if (Player.addSpeed < eightEngineSpeed && GameManager.gold >= eightEnginePrice)
                 {
                     Player.addSpeed = eightEngineSpeed;
-                    GameManager.gold -= eightEnginePrice;
+                    GameManager.gold -= isFree ? 0 : eightEnginePrice;
                 }
                 break;
         }

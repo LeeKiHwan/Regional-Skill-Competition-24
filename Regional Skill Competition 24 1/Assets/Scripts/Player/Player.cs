@@ -86,11 +86,11 @@ public class Player : MonoBehaviour
                 GameManager.gold += 10000000;
                 break;
             case 3:
-                StartCoroutine(SpeedBuff(10, 3));
+                StartCoroutine(SpeedBuff(7.5f, 3));
                 StartCoroutine(BoostEffect(0));
                 break;
             case 4:
-                StartCoroutine(SpeedBuff(20, 3));
+                StartCoroutine(SpeedBuff(15, 3));
                 StartCoroutine(BoostEffect(1));
                 break;
         }
