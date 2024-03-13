@@ -25,8 +25,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
-        curStage = 1;
     }
 
     private void Update()
@@ -83,9 +81,16 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<PlayerCamera>().positionTarget = endCameraPos;
     }
 
-    public void GoStore()
+    public void Next()
     {
-        SceneManager.LoadScene("Store");
+        if (curStage != 3)
+        {
+            SceneManager.LoadScene("Store");
+        }
+        else if (curStage == 3)
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     public void CheatKey()

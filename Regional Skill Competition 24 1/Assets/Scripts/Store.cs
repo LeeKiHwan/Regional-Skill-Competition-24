@@ -107,9 +107,11 @@ public class Store : MonoBehaviour
         {
             case 1:
                 SceneManager.LoadScene("Stage2");
+                GameManager.curStage++;
                 break;
             case 2:
                 SceneManager.LoadScene("Stage3");
+                GameManager.curStage++;
                 break;
         }
     }

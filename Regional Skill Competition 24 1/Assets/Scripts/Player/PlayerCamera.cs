@@ -11,7 +11,11 @@ public class PlayerCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.LookAt(lookTarget.position);
+        float randX = Random.Range(0.001f, 0.005f);
+        float randY = Random.Range(0.001f, 0.005f);
+
+        transform.LookAt(lookTarget.position + new Vector3(randX, randY));
+
         transform.position = Vector3.Lerp(transform.position, positionTarget.position, followSpeed * Time.deltaTime);
     }
 }
