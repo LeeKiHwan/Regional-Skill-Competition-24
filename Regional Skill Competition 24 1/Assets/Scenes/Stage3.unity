@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.125, g: 0.125, b: 0.125, a: 1}
+  m_AmbientSkyColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.054480955, g: 0.048493683, b: 0.026827296, a: 1}
+  m_IndirectSpecularColor: {r: 0.2531134, g: 0.23130399, b: 0.17554015, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -18106,6 +18106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 1
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &316009367
@@ -31387,13 +31388,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.13052624, y: 0, z: 0, w: 0.9914449}
+  m_LocalRotation: {x: -0.052335896, y: 0, z: 0, w: 0.9986295}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -6, y: 0, z: 0}
 --- !u!1 &706467397
 GameObject:
   m_ObjectHideFlags: 0
@@ -34658,6 +34659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 0
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &929996332
@@ -92889,6 +92891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 1
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &2126120764
@@ -93064,6 +93067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 2
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &2133022835
