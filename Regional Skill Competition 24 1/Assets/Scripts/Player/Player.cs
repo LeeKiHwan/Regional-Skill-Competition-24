@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public float slowSpeed;
     public static float addSpeed;
     public float rotSpeed;
+
+    [Space()]
     public GameObject driftEffect;
     public float itemGetTime;
     public GameObject itemGetEffect;
@@ -28,7 +30,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
         rb = GetComponent<Rigidbody>();
     }
 
