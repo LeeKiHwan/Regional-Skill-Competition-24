@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,29 +32,6 @@ public class GameManager : MonoBehaviour
         }
 
         CheatKey();
-
-        if (itemCheatOn)
-        {
-            if (Input.GetKeyDown(KeyCode.RightBracket))
-            {
-                itemCheat[itemCheatIndex].SetActive(false);
-                itemCheatIndex = Mathf.Clamp(itemCheatIndex + 1, 0, 5);
-                itemCheat[itemCheatIndex].SetActive(true);
-            }
-            if (Input.GetKeyDown(KeyCode.LeftBracket))
-            {
-                itemCheat[itemCheatIndex].SetActive(false);
-                itemCheatIndex = Mathf.Clamp(itemCheatIndex - 1, 0, 5);
-                itemCheat[itemCheatIndex].SetActive(true);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Backspace))
-            {
-                Player.instance.GetItem(itemCheatIndex);
-                itemCheat[itemCheatIndex].SetActive(false);
-                itemCheatOn = false;
-            }
-        }
     }
 
     public void RestartStage()
@@ -128,6 +102,29 @@ public class GameManager : MonoBehaviour
             else if (Time.timeScale == 0)
             {
                 Time.timeScale = 1;
+            }
+        }
+
+        if (itemCheatOn)
+        {
+            if (Input.GetKeyDown(KeyCode.RightBracket))
+            {
+                itemCheat[itemCheatIndex].SetActive(false);
+                itemCheatIndex = Mathf.Clamp(itemCheatIndex + 1, 0, 5);
+                itemCheat[itemCheatIndex].SetActive(true);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            {
+                itemCheat[itemCheatIndex].SetActive(false);
+                itemCheatIndex = Mathf.Clamp(itemCheatIndex - 1, 0, 5);
+                itemCheat[itemCheatIndex].SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                Player.instance.GetItem(itemCheatIndex);
+                itemCheat[itemCheatIndex].SetActive(false);
+                itemCheatOn = false;
             }
         }
     }
