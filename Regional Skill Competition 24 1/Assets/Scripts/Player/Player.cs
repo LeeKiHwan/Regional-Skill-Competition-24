@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public GameObject driftEffect;
     public float itemGetTime;
     public GameObject itemGetEffect;
+    public MeshRenderer carRenderer;
 
     [Space()]
     public GameObject miniBoost;
@@ -31,6 +32,16 @@ public class Player : MonoBehaviour
     {
         instance = this;
         rb = GetComponent<Rigidbody>();
+
+        Material[] m = new Material[carRenderer.materials.Length];
+
+        for (int i = 0; i < carRenderer.materials.Length; i++)
+        {
+            m[i] = carRenderer.materials[i];
+        }
+
+        m[2] = MenuManager.carMaterial;
+        carRenderer.materials = m;
     }
 
     private void Update()

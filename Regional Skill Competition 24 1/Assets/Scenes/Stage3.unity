@@ -34143,6 +34143,7 @@ MonoBehaviour:
   driftEffect: {fileID: 336598294}
   itemGetTime: 0
   itemGetEffect: {fileID: 3755885896451422859, guid: 15893ad1a87becd4db19a2cf9ba8e782, type: 3}
+  carRenderer: {fileID: 8752385286068563277}
   miniBoost: {fileID: 1865146088}
   megaBoost: {fileID: 277344850}
 --- !u!54 &901198523

@@ -9,6 +9,19 @@ public class MenuManager : MonoBehaviour
 
     public MeshRenderer car;
 
+    private void Awake()
+    {
+        Material[] m = new Material[car.materials.Length];
+
+        for (int i = 0; i < car.materials.Length; i++)
+        {
+            m[i] = car.materials[i];
+        }
+        carMaterial = carMaterials[carMaterialIndex];
+        m[2] = carMaterial;
+        car.materials = m;
+    }
+
     private void Update()
     {
         car.transform.Rotate(Vector3.up * 30 * Time.deltaTime);

@@ -17885,6 +17885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 1
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &316009367
@@ -34667,6 +34668,7 @@ MonoBehaviour:
   driftEffect: {fileID: 336598294}
   itemGetTime: 0
   itemGetEffect: {fileID: 3755885896451422859, guid: 15893ad1a87becd4db19a2cf9ba8e782, type: 3}
+  carRenderer: {fileID: 8752385286068563277}
   miniBoost: {fileID: 1865146088}
   megaBoost: {fileID: 277344850}
 --- !u!54 &901198523
@@ -35256,6 +35258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 0
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &929996332
@@ -92698,6 +92701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 1
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &2126120764
@@ -92846,6 +92850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99a3bc52034e0a348afba67367142333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   collisionType: 2
   collisionEffect: {fileID: 775460696596230069, guid: db20d8db5dbb9fd459b600979cb8ef24, type: 3}
 --- !u!54 &2133022835
