@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionChecker : MonoBehaviour
@@ -11,16 +9,19 @@ public class CollisionChecker : MonoBehaviour
         Back
     }
 
+    public Player player;
     public CollisionType collisionType;
-
     public GameObject collisionEffect;
+
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            Player player = GetComponentInParent<Player>();
-
             switch (collisionType)
             {
                 case CollisionType.Foward:
