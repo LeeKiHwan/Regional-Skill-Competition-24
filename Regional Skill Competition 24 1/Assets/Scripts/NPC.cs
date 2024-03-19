@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPC : MonoBehaviour
@@ -32,8 +30,6 @@ public class NPC : MonoBehaviour
         {
             Vector3 dir = (transform.position - collision.transform.position).normalized;
             rb.AddForce(dir * 8f, ForceMode.Impulse);
-
-            GetComponent<Collider>().isTrigger = false;
 
             isCollision = true;
         }

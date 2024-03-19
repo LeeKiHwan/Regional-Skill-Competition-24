@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
-
     public void StartGame()
     {
         Player.addSpeed = 0;
@@ -19,16 +15,6 @@ public class MenuManager : MonoBehaviour
         GameManager.gold = 0;
 
         SceneManager.LoadScene("Stage1");
-    }
-
-    public void HelpUI()
-    {
-
-    }
-
-    public void RankingUI()
-    {
-
     }
 
     public void Quit()
