@@ -17,7 +17,7 @@ public class RankingManager : MonoBehaviour
     public static void InsertRank(RankInfo rankInfo)
     {
         rankings.Add(rankInfo);
-        rankings.OrderBy(i => i.score);
+        rankings = rankings.OrderByDescending(i => i.score).ToList();
     }
 
     public void ShowRanking()
@@ -27,7 +27,7 @@ public class RankingManager : MonoBehaviour
             rankingTexts[i].text = "";
         }
 
-        for (int i = 0; i<rankings.Count; i++)
+        for (int i = 0; i<Mathf.Clamp(rankings.Count, 0, rankingTexts.Length); i++)
         {
             rankingTexts[i].text = $"{i+1}    \"{rankings[i].name}\"    {rankings[i].score}p";
         }

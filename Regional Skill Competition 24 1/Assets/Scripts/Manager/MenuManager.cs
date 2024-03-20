@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,8 @@ public class MenuManager : MonoBehaviour
     public Material[] carMaterials;
     public int carMaterialIndex;
     public static Material carMaterial;
+    public TMP_InputField nameInputField;
+    public static string inputName;
 
     public MeshRenderer car;
 
@@ -41,6 +44,8 @@ public class MenuManager : MonoBehaviour
         GameManager.curStage = 1;
         GameManager.score = 0;
         GameManager.gold = 0;
+
+        inputName = nameInputField.text;
 
         SceneManager.LoadScene("Stage1");
     }

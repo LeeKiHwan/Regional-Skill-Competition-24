@@ -63,7 +63,13 @@ public class GameManager : MonoBehaviour
         }
         else if (curStage == 3)
         {
-            SceneManager.LoadScene("Menu");
+            RankInfo rankInfo = new RankInfo();
+            rankInfo.name = MenuManager.inputName;
+            rankInfo.score = score;
+
+            RankingManager.InsertRank(rankInfo);
+
+            SceneManager.LoadScene("Ranking");
         }
     }
 
