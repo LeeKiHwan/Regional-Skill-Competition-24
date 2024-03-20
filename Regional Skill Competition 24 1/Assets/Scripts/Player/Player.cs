@@ -33,13 +33,7 @@ public class Player : MonoBehaviour
         instance = this;
         rb = GetComponent<Rigidbody>();
 
-        Material[] m = new Material[carRenderer.materials.Length];
-
-        for (int i = 0; i < carRenderer.materials.Length; i++)
-        {
-            m[i] = carRenderer.materials[i];
-        }
-
+        Material[] m = carRenderer.materials;
         m[2] = MenuManager.carMaterial;
         carRenderer.materials = m;
     }
