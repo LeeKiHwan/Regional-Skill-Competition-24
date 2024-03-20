@@ -11,12 +11,7 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        Material[] m = new Material[car.materials.Length];
-
-        for (int i = 0; i < car.materials.Length; i++)
-        {
-            m[i] = car.materials[i];
-        }
+        Material[] m = car.materials;
         carMaterial = carMaterials[carMaterialIndex];
         m[2] = carMaterial;
         car.materials = m;
@@ -31,14 +26,7 @@ public class MenuManager : MonoBehaviour
     {
         carMaterialIndex = Mathf.Clamp(carMaterialIndex + index, 0, carMaterials.Length-1);
         carMaterial = carMaterials[carMaterialIndex];
-
-        Material[] m = new Material[car.materials.Length];
-
-        for (int i = 0; i < car.materials.Length; i++)
-        {
-            m[i] = car.materials[i];
-        }
-
+        Material[] m = car.materials;
         m[2] = carMaterial;
         car.materials = m;
     }
