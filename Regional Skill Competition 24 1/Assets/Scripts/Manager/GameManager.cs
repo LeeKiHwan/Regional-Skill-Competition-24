@@ -5,19 +5,20 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public bool isStarted;
     public static int curStage;
-
-    public float time;
     public static int score;
     public static int gold;
+
+    public bool isStarted;
+    public float time;
     public int getGold;
-    public int itemCheatIndex;
-    public bool itemCheatOn;
-    public GameObject[] itemCheat;
 
     public bool isEnemyFinished = false;
     public Transform endCameraPos;
+
+    public int itemCheatIndex;
+    public bool itemCheatOn;
+    public GameObject[] itemCheat;
 
     private void Awake()
     {
