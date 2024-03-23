@@ -6254,7 +6254,7 @@ RectTransform:
   m_GameObject: {fileID: 117386545}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 614057275}
@@ -31786,7 +31786,7 @@ RectTransform:
   m_GameObject: {fileID: 687559665}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 469003092}
@@ -34662,7 +34662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 10
-  maxSpeed: 25
+  maxSpeed: 30
   slowSpeed: 0
   rotSpeed: 125
   driftEffect: {fileID: 336598294}
@@ -42695,7 +42695,7 @@ RectTransform:
   m_GameObject: {fileID: 1170895933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1656237432}
@@ -72616,6 +72616,8 @@ MonoBehaviour:
   isStarted: 0
   time: 0
   getGold: 10000000
+  isEnemyFinished: 0
+  endCameraPos: {fileID: 897397682}
   itemCheatIndex: 0
   itemCheatOn: 0
   itemCheat:
@@ -72625,8 +72627,6 @@ MonoBehaviour:
   - {fileID: 1288508376}
   - {fileID: 740988528}
   - {fileID: 1066595325}
-  isEnemyFinished: 0
-  endCameraPos: {fileID: 897397682}
 --- !u!1001 &1671660310
 PrefabInstance:
   m_ObjectHideFlags: 0

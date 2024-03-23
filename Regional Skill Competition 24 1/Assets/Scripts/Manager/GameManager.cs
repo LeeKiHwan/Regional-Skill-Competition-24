@@ -91,12 +91,15 @@ public class GameManager : MonoBehaviour
             {
                 case 1:
                     SceneManager.LoadScene("Stage2");
+                    curStage = 2;
                     break;
                 case 2:
                     SceneManager.LoadScene("Stage3");
+                    curStage = 3;
                     break;
                 case 3:
                     SceneManager.LoadScene("Stage1");
+                    curStage = 1;
                     break;
             }
         }
