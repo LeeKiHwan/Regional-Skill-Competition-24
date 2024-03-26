@@ -8,6 +8,9 @@ public class InGameUIManager : MonoBehaviour
 
     [Space()]
     public TextMeshProUGUI countDownText;
+    public CameraMove[] countDownCamera;
+    public Transform lookTarget;
+    public Transform positionTarget;
 
     [Space()]
     public GameObject inGameUILayer;
@@ -38,13 +41,41 @@ public class InGameUIManager : MonoBehaviour
 
     public IEnumerator CountDown()
     {
+        PlayerCamera pc = Camera.main.GetComponent<PlayerCamera>();
+        pc.followSpeed = 100;
+
+        pc.positionTarget = countDownCamera[0].transform;
+        pc.lookTarget = countDownCamera[0].lookTarget;
+
+        yield return new WaitForSeconds(3);
+
+        pc.positionTarget = countDownCamera[1].transform;
+        pc.lookTarget = countDownCamera[1].lookTarget;
+        countDownCamera[1].speed = 0.5f;
+
         countDownText.text = "3";
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
+
+        pc.positionTarget = countDownCamera[2].transform;
+        pc.lookTarget = countDownCamera[2].lookTarget;
+        countDownCamera[2].speed = 0.5f;
+
         countDownText.text = "2";
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
+
+        pc.positionTarget = countDownCamera[3].transform;
+        pc.lookTarget = countDownCamera[3].lookTarget;
+        countDownCamera[3].speed = 0.5f;
+
         countDownText.text = "1";
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
+
+        pc.followSpeed = 1;
+        pc.positionTarget = positionTarget;
+        pc.lookTarget = lookTarget;
+
         countDownText.text = "GO!";
+        pc.isStarted = true;
         GameManager.instance.isStarted = true;
         yield return new WaitForSeconds(0.5f);
         countDownText.text = "";

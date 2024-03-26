@@ -5,6 +5,15 @@ public class PlayerCamera : MonoBehaviour
     public Transform lookTarget;
     public Transform positionTarget;
     public float followSpeed;
+    public bool isStarted;
+
+    private void Update()
+    {
+        if (isStarted)
+        {
+            followSpeed = Mathf.Lerp(followSpeed, 10, Time.deltaTime * 2);
+        }
+    }
 
     private void FixedUpdate()
     {
