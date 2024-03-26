@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public MeshRenderer carRenderer;
 
     [Space()]
+    public float boostTime;
     public GameObject miniBoost;
     public GameObject megaBoost;
 
@@ -93,29 +94,29 @@ public class Player : MonoBehaviour
                 break;
             case 3:
                 StartCoroutine(SpeedBuff(7.5f, 3));
-                StartCoroutine(BoostEffect(0));
+                StartCoroutine(BoostEffect(0, 3));
                 break;
             case 4:
                 StartCoroutine(SpeedBuff(15, 3));
-                StartCoroutine(BoostEffect(1));
+                StartCoroutine(BoostEffect(1, 3));
                 break;
         }
 
         StartCoroutine(InGameUIManager.instance.ShowItem(rand));
     }
 
-    public IEnumerator BoostEffect(int boost)
+    public IEnumerator BoostEffect(int boost, float time)
     {
         if (boost == 0)
         {
             miniBoost.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(time);
             miniBoost.SetActive(false);
         }
         else if (boost == 1)
         {
             megaBoost.SetActive(true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(time);
             megaBoost.SetActive(false);
         }
 
@@ -137,6 +138,13 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
 
             itemGetTime = Time.time + 2;
+        }
+
+        if (other.CompareTag("Boost") && boostTime < Time.time)
+        {
+            StartCoroutine(SpeedBuff(10, 1.5f));
+            StartCoroutine(BoostEffect(0, 1.5f));
+            boostTime = Time.time + 2;
         }
     }
 

@@ -42,8 +42,6 @@ public class InGameUIManager : MonoBehaviour
     public IEnumerator CountDown()
     {
         PlayerCamera pc = Camera.main.GetComponent<PlayerCamera>();
-        pc.followSpeed = 100;
-
         pc.positionTarget = countDownCamera[0].transform;
         pc.lookTarget = countDownCamera[0].lookTarget;
 
