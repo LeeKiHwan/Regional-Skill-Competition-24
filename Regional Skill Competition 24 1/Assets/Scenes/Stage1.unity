@@ -35098,7 +35098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speed: 10
-  maxSpeed: 30
+  maxSpeed: 25
   slowSpeed: 0
   rotSpeed: 125
   driftEffect: {fileID: 336598294}
@@ -36577,6 +36577,7 @@ MonoBehaviour:
   lookTarget: {fileID: 991576580}
   positionTarget: {fileID: 940526450}
   followSpeed: 10
+  isStarted: 0
 --- !u!1 &964870042
 GameObject:
   m_ObjectHideFlags: 0
