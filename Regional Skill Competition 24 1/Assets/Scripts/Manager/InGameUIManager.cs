@@ -73,7 +73,7 @@ public class InGameUIManager : MonoBehaviour
         pc.lookTarget = lookTarget;
 
         countDownText.text = "GO!";
-        pc.isStarted = true;
+        pc.followSpeed = 30;
         GameManager.instance.isStarted = true;
         yield return new WaitForSeconds(0.5f);
         countDownText.text = "";

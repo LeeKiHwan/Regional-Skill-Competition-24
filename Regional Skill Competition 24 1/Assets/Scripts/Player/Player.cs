@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +14,11 @@ public class Player : MonoBehaviour
     public float slowSpeed;
     public static float addSpeed;
     public float rotSpeed;
+
+    [Space()]
+    public Transform lookTarget;
+    public Transform positionTarget;
+    public PlayerCamera playerCamera;
 
     [Space()]
     public GameObject driftEffect;
@@ -33,6 +39,7 @@ public class Player : MonoBehaviour
     {
         instance = this;
         rb = GetComponent<Rigidbody>();
+        playerCamera = Camera.main.GetComponent<PlayerCamera>();    
 
         Material[] m = carRenderer.materials;
         m[2] = MenuManager.carMaterial;
@@ -54,6 +61,9 @@ public class Player : MonoBehaviour
         rb.AddForce(transform.forward * z, ForceMode.Acceleration);
         transform.Rotate(transform.up, yRot);
 
+        lookTarget.localPosition = Vector3.Lerp(lookTarget.localPosition, new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1.25f), Time.deltaTime * 2);
+        positionTarget.localPosition = Vector3.Lerp(positionTarget.localPosition, new Vector3(Input.GetAxisRaw("Horizontal") * 1.5f, 1.5f, -2.25f), Time.deltaTime * 2);
+
         driftEffect.SetActive(Mathf.Abs(Input.GetAxis("Horizontal")) > 0.975f && rb.velocity.y > -1f);
 
         Vector3 vel = Vector3.ClampMagnitude(rb.velocity, maxSpeed + addSpeed - slowSpeed);
@@ -71,8 +81,19 @@ public class Player : MonoBehaviour
     public IEnumerator SpeedBuff(float speed, float time)
     {
         maxSpeed += speed;
+        playerCamera.followSpeed = 10;
         yield return new WaitForSeconds(time);
         maxSpeed -= speed;
+        playerCamera.followSpeed += 30;
+
+        yield break;
+    }
+
+    public IEnumerator CameraZoomOut(float value, float time)
+    {
+        playerCamera.followSpeed += value;
+        yield return new WaitForSeconds(time);
+        playerCamera.followSpeed -= value;
 
         yield break;
     }
