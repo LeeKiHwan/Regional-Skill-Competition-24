@@ -208,18 +208,20 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("SuperBoost") && boostTime < Time.time)
-        {
-            float speed = collision.gameObject.GetComponent<SuperBoost>().addSpeed;
-            float time = collision.gameObject.GetComponent<SuperBoost>().time;
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("SuperBoost") && boostTime < Time.time)
+    //    {
+    //        Debug.Log(true);
 
-            StartCoroutine(SpeedBuff(speed, time));
+    //        float speed = collision.gameObject.GetComponent<SuperBoost>().addSpeed;
+    //        float time = collision.gameObject.GetComponent<SuperBoost>().time;
 
-            boostTime = Time.time + 2;
-        }
-    }
+    //        StartCoroutine(SpeedBuff(speed, time));
+
+    //        boostTime = Time.time + 2;
+    //    }
+    //}
 
     private void OnCollisionStay(Collision collision)
     {
