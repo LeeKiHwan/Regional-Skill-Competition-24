@@ -21,7 +21,7 @@ public class NPC : MonoBehaviour
     {
         if (!isCollision)
         {
-            rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(transform.forward * speed * Time.deltaTime * 350, ForceMode.Acceleration);
             rb.velocity = Vector2.ClampMagnitude(rb.velocity, maxSpeed);
         }
     }

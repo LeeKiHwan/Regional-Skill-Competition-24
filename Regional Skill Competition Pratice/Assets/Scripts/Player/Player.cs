@@ -73,7 +73,10 @@ public class Player : MonoBehaviour
         float z = Input.GetAxis("Vertical") * speed * Time.deltaTime * 350;
         float yRot = Input.GetAxis("Horizontal") * Input.GetAxis("Vertical") * rotSpeed * Time.deltaTime;
 
-        rb.AddForce(transform.forward * z, ForceMode.Acceleration);
+        if (Physics.Raycast(transform.position, Vector3.down, 1, 1 << LayerMask.NameToLayer("Ground")))
+        {
+            rb.AddForce(transform.forward * z, ForceMode.Acceleration);
+        }
         transform.Rotate(transform.up, yRot);
 
         lookTarget.localPosition = Vector3.Lerp(lookTarget.localPosition, new Vector3(Input.GetAxis("Horizontal") * 2f, 0.5f, 3), Time.deltaTime * 3);
@@ -96,7 +99,6 @@ public class Player : MonoBehaviour
 
         Vector3 vel = Vector3.ClampMagnitude(rb.velocity, maxSpeed + addSpeed - slowSpeed);
         rb.velocity = Vector3.Lerp(rb.velocity, new Vector3(vel.x, rb.velocity.y, vel.z), Time.deltaTime * 10);
-        //rb.AddForce(Vector3.down * Time.deltaTime * 1750, ForceMode.Acceleration);
 
         rb.angularVelocity = Vector3.zero;
         
@@ -243,5 +245,11 @@ public class Player : MonoBehaviour
             if (collision.gameObject.GetComponent<NPC>()) rb.AddForce(dir * 8, ForceMode.VelocityChange);
             else rb.AddForce(dir * 3, ForceMode.VelocityChange);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, Vector3.down * 1);
     }
 }

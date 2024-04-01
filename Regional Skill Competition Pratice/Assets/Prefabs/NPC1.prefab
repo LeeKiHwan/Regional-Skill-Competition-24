@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  speed: 4000
-  maxSpeed: 40
+  speed: 50
+  maxSpeed: 100
   destroyTime: 5
   isCollision: 0
 --- !u!1001 &7444214079413414685

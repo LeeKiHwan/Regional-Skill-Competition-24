@@ -26,7 +26,7 @@ public class CollisionChecker : MonoBehaviour
                     StartCoroutine(player.SpeedBuff(-5, 2));
                     break;
                 case 2:
-                    StartCoroutine(player.SpeedBuff(10, 2));
+                    StartCoroutine(player.SpeedBuff(20, 2));
                     break;
             }
 
