@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +11,11 @@ public class UIManager : MonoBehaviour
 
     [Space()]
     public TextMeshProUGUI countDownText;
+
+    [Space()]
+    public GameObject rain;
+    public float rainCool;
+    public Transform rainParent;
 
     [Space()]
     public GameObject inGameUI;
@@ -34,12 +38,33 @@ public class UIManager : MonoBehaviour
     {
         instance = this;
         StartCoroutine(CountDown());
+
+        if (GameManager.curStage == 3) StartCoroutine(Rain());
     }
 
     private void Update()
     {
         timeText.text = ((int)GameManager.instance.time / 60) + ":" + ((int)GameManager.instance.time % 60);
         velocityText.text = ((int)Player.instance.rb.velocity.magnitude * 3600 / 1000).ToString();
+    }
+
+    public IEnumerator Rain()
+    {
+        while (true)
+        {
+            GameObject g = Instantiate(rain, rainParent);
+            g.transform.position = g.transform.position + new Vector3(Random.Range(-860, 860), Random.Range(-540, 540));
+
+            float color = Random.Range(0f, 1f);
+            g.GetComponent<Image>().color = new Color(color, color, color);
+
+            float scale = Random.Range(0f, 1f);
+            g.transform.localScale = new Vector3(scale, scale, scale);
+
+            Destroy(g, 2);
+
+            yield return new WaitForSeconds(rainCool);
+        }
     }
 
     public IEnumerator CountDown()
