@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public int carMaterialIndex;
     public MeshRenderer carModel;
 
+    public GameObject title;
+
     public static string inputName;
     public TMP_InputField nameInputField;
 
@@ -21,6 +23,34 @@ public class MenuManager : MonoBehaviour
         carMaterial = carMaterials[carMaterialIndex];
         m[0] = carMaterial;
         carModel.materials = m;
+
+        StartCoroutine(TitleAnimation());
+    }
+
+    public IEnumerator TitleAnimation()
+    {
+        while (title.transform.localScale.x > 0.75f)
+        {
+            title.transform.localScale = new Vector3(title.transform.localScale.x - Time.deltaTime, title.transform.localScale.x - Time.deltaTime, title.transform.localScale.x - Time.deltaTime);
+            yield return null;
+        }
+
+        StartCoroutine(TitleAnimation2());
+
+        yield break;
+    }
+
+    public IEnumerator TitleAnimation2()
+    {
+        while (title.transform.localScale.x < 1.25f)
+        {
+            title.transform.localScale = new Vector3(title.transform.localScale.x + Time.deltaTime, title.transform.localScale.x + Time.deltaTime, title.transform.localScale.x + Time.deltaTime);
+            yield return null;
+        }
+
+        StartCoroutine(TitleAnimation());
+
+        yield break;
     }
 
     private void Update()

@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject rain;
     public float rainCool;
     public Transform rainParent;
+    public ParticleSystem sand;
 
     [Space()]
     public GameObject inGameUI;
@@ -39,6 +40,8 @@ public class UIManager : MonoBehaviour
         instance = this;
         StartCoroutine(CountDown());
 
+        if (GameManager.curStage == 1) StartCoroutine(SandStorm());
+        if (GameManager.curStage == 2) StartCoroutine(SunDown());
         if (GameManager.curStage == 3) StartCoroutine(Rain());
     }
 
@@ -46,6 +49,34 @@ public class UIManager : MonoBehaviour
     {
         timeText.text = ((int)GameManager.instance.time / 60) + ":" + ((int)GameManager.instance.time % 60);
         velocityText.text = ((int)Player.instance.rb.velocity.magnitude * 3600 / 1000).ToString();
+    }
+
+    public IEnumerator SandStorm()
+    {
+        for (int i=0; i<30; i++)
+        {
+            sand.emissionRate += 5;
+            yield return new WaitForSeconds(1);
+        }
+
+        sand.gameObject.SetActive(false);
+
+        yield break;
+    }
+
+    public IEnumerator SunDown()
+    {
+        Camera camera = Camera.main;
+        Light light = GameObject.Find("Directional Light").GetComponent<Light>();
+
+        while (camera.backgroundColor.r > 0)
+        {
+            camera.backgroundColor = new Color(camera.backgroundColor.r - Time.deltaTime / 60, camera.backgroundColor.g - Time.deltaTime / 60, camera.backgroundColor.b);
+            light.intensity -= Time.deltaTime / 60;
+            yield return null;
+        }
+
+        yield break;
     }
 
     public IEnumerator Rain()

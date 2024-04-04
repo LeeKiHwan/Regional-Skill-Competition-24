@@ -12067,6 +12067,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 4b3ed305f7385f44a96b39009c1f4376, type: 2}
   carMaterialIndex: 0
   carModel: {fileID: 1711813854771012850}
+  title: {fileID: 514602073}
   nameInputField: {fileID: 1969515302}
 --- !u!1 &1716157832
 GameObject:
