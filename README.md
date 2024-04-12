@@ -112,7 +112,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-		    // 카메라가 lookTarget을 바라보도록 LookAt 함수 실행한다.
+        // 카메라가 lookTarget을 바라보도록 LookAt 함수 실행한다.
         transform.LookAt(lookTarget.position);
         
         // 카메라의 위치를 Vector3.Lerp를 사용하여 positionTarget.position으로 followSpeed 만큼 이동시킨다.
@@ -162,26 +162,26 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-
-		// NavMeshAgent의 SetDestination 함수를 사용해 적 차량의 목적지를 설정해준다.
+        
+        // NavMeshAgent의 SetDestination 함수를 사용해 적 차량의 목적지를 설정해준다.
         agent.SetDestination(target.position);
     }
 
     private void Update()
     {
-		// GameManager 싱글톤을 참조하여 게임이 시작했을 시에만 움직일 수 있도록 설정한다.
+        // GameManager 싱글톤을 참조하여 게임이 시작했을 시에만 움직일 수 있도록 설정한다.
         agent.isStopped = !GameManager.instance.isStarted;
         
         // Update마다 agent.speed에 speed를 대입하여 speed 값이 바뀔때마다 적 차량의 속도가 달라지게 한다.
         agent.speed = speed;
-
-		// rb.velocity를 Vector3.zero로 Lerp하여 적 차량에 대한 적당한 물리처리를 구현한다.
+        
+        // rb.velocity를 Vector3.zero로 Lerp하여 적 차량에 대한 적당한 물리처리를 구현한다.
         rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-		// Finish 태그를 가진 오브젝트에 닿을 시 GameManager 싱글톤을 참조하여 적 차량의 결승점 도달을 저장한다.
+        // Finish 태그를 가진 오브젝트에 닿을 시 GameManager 싱글톤을 참조하여 적 차량의 결승점 도달을 저장한다.
         if (other.CompareTag("Finish"))
         {
             GameManager.instance.isEnemyFinished = true;
@@ -248,7 +248,7 @@ public MeshRenderer carRenderer;
 
 private void Awake()
 {
-	// 플레이어 차량의 MeshRenderer 컴포넌트를 참조하여 차체의 매터리얼을 메뉴에서 선택한 매터리얼로 변경하려 하였으나 변경이 되지않았다.
+    // 플레이어 차량의 MeshRenderer 컴포넌트를 참조하여 차체의 매터리얼을 메뉴에서 선택한 매터리얼로 변경하려 하였으나 변경이 되지않았다.
     carRenderer.materials[2] = MenuManager.carMaterial;
 }
 ```
@@ -264,7 +264,7 @@ public MeshRenderer carRenderer;
 
 private void Awake()
 {
-	// 플레이어 차량의 MeshRenderer 컴포넌트의 Materials 배열을 복사한 뒤 차체의 매터리얼을 담당하는 2번째 매터리얼을 변경하고, 변경한 배열을 다시 Materials 배열에 대입하여 문제를 해결하였다.
+    // 플레이어 차량의 MeshRenderer 컴포넌트의 Materials 배열을 복사한 뒤 차체의 매터리얼을 담당하는 2번째 매터리얼을 변경하고, 변경한 배열을 다시 Materials 배열에 대입하여 문제를 해결하였다.
     Material[] m = carRenderer.materials;
     m[2] = MenuManager.carMaterial;
     carRenderer.materials = m;
